@@ -7,6 +7,7 @@ import android.app.SearchManager;
 import android.app.SearchableInfo;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -48,6 +49,11 @@ public class PhotoGalleryFragment extends Fragment {
 
         //new FetchItemsTask().execute();
         updateItems();
+
+      //  Intent ff=new Intent(getActivity(),PollService.class);
+      //  getActivity().startActivity(ff);
+
+
         mThumbnailThread=new ThumbnailDownloader(new Handler());
         mThumbnailThread.setListener(new ThumbnailDownloader.Listener<ImageView>() {
             public void onThumbnailDownloaded(ImageView imageView, Bitmap thumbnail) {
