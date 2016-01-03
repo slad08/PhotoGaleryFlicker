@@ -51,7 +51,7 @@ public class PhotoGalleryFragment extends Fragment {
         updateItems();
 
       //  Intent ff=new Intent(getActivity(),PollService.class);
-      //  getActivity().startActivity(ff);
+    //    getActivity().startActivity(ff);
 
 
         mThumbnailThread=new ThumbnailDownloader(new Handler());
