@@ -50,9 +50,7 @@ public class PhotoGalleryFragment extends Fragment {
         //new FetchItemsTask().execute();
         updateItems();
 
-      //  Intent ff=new Intent(getActivity(),PollService.class);
-    //    getActivity().startActivity(ff);
-        PollService.setServiceAlarm(getActivity(),true);
+      //  PollService.setServiceAlarm(getActivity(),true);
 
         mThumbnailThread=new ThumbnailDownloader(new Handler());
         mThumbnailThread.setListener(new ThumbnailDownloader.Listener<ImageView>() {
@@ -111,6 +109,7 @@ public class PhotoGalleryFragment extends Fragment {
         }*/
     }
     @Override
+    @TargetApi(11)
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_item_search:
@@ -122,13 +121,31 @@ public class PhotoGalleryFragment extends Fragment {
                         .putString(FlickrFetchr.PREF_SEARCH_QUERY,null)
                         .commit();
                         updateItems();
+                return true;
 
+            case R.id.menu_item_toogle_polling:
+                boolean shouldStartAlarm=!PollService.isServiceAlarmOn(getActivity());
+                PollService.setServiceAlarm(getActivity(),shouldStartAlarm);
+
+                if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.HONEYCOMB)
+                    getActivity().invalidateOptionsMenu();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
+    @Override
+    public void onPrepareOptionsMenu(Menu menu){
+        super.onPrepareOptionsMenu(menu);
+
+        MenuItem toogleItem=menu.findItem(R.id.menu_item_toogle_polling);
+        if(PollService.isServiceAlarmOn(getActivity())){
+            toogleItem.setTitle(R.string.stop_polling);
+        }else {
+            toogleItem.setTitle(R.string.start_polling);
+        }
+    }
     void setupAdapter() {
         if (getActivity()==null || mGridView==null) return;
 
