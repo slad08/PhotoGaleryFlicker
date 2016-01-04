@@ -52,7 +52,7 @@ public class PhotoGalleryFragment extends Fragment {
 
       //  Intent ff=new Intent(getActivity(),PollService.class);
     //    getActivity().startActivity(ff);
-
+        PollService.setServiceAlarm(getActivity(),true);
 
         mThumbnailThread=new ThumbnailDownloader(new Handler());
         mThumbnailThread.setListener(new ThumbnailDownloader.Listener<ImageView>() {
