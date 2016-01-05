@@ -21,7 +21,7 @@ import java.util.ArrayList;
  */
 public class PollService extends IntentService {
     private static final String TAG = "PollService";
-    private static final int POLL_INTERVAL=1000*15;//15 секунд
+    private static final int POLL_INTERVAL=1000*60*5;//5 мин
 
     public PollService() {
         super(TAG);
@@ -51,7 +51,6 @@ public class PollService extends IntentService {
 
         if (!resultId.equals(lastResultId)) {
             Log.i(TAG, "Got a new result: " + resultId);
-        }
 
         Resources r = getResources();
         PendingIntent pi = PendingIntent
@@ -59,7 +58,7 @@ public class PollService extends IntentService {
 
         Notification notification = new NotificationCompat.Builder(this)
                 .setTicker(r.getString(R.string.new_picture_title))
-                .setSmallIcon(android.R.drawable.ic_menu_report_image)
+                .setSmallIcon(R.drawable.flickr)
                 .setContentTitle(r.getString(R.string.new_picture_title))
                 .setContentTitle(r.getString(R.string.new_picture_text))
                 .setContentIntent(pi)
@@ -69,7 +68,7 @@ public class PollService extends IntentService {
         NotificationManager notificationManager = (NotificationManager)
                 getSystemService(NOTIFICATION_SERVICE);
         notificationManager.notify(0, notification);
-
+    }
         prefs.edit()
                 .putString(FlickrFetchr.PREF_LAST_RESULT_ID,resultId)
                 .commit();
