@@ -25,6 +25,9 @@ public class PollService extends IntentService {
 
     public static final String PREF_IS_ALARM_ON="isAlarmOn";
 
+    public static final String ACTION_SHOW_NOTIFICATION=
+            "nerdlauncher.android.bignerdranch.com.photogallery.SHOW_NOTIFICATION";
+
 
     public PollService() {
         super(TAG);
@@ -71,6 +74,8 @@ public class PollService extends IntentService {
         NotificationManager notificationManager = (NotificationManager)
                 getSystemService(NOTIFICATION_SERVICE);
         notificationManager.notify(0, notification);
+
+            sendBroadcast(new Intent(ACTION_SHOW_NOTIFICATION));
     }
         prefs.edit()
                 .putString(FlickrFetchr.PREF_LAST_RESULT_ID,resultId)
