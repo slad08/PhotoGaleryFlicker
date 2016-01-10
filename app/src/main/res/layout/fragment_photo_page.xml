@@ -2,11 +2,24 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
      android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <WebView
+    <android.support.v4.widget.ContentLoadingProgressBar
+        android:id="@+id/progressBraMy"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:visibility="invisible"
+        style="?android:attr/progressBarStyleHorizontal"/>
+    <TextView
+        android:id="@+id/titleTextVIew"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_above="@+id/progressBraMy"/>
+    <WebView
         android:id="@+id/webView_my"
-        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/titleTextVIew"
         android:layout_alignParentTop="true"/>
 
 
