@@ -28,8 +28,10 @@ public class PollService extends IntentService {
     public static final String ACTION_SHOW_NOTIFICATION=
             "nerdlauncher.android.bignerdranch.com.photogallery.SHOW_NOTIFICATION";
 
+    public static final String PERM_PRIVATE=
+            "nerdlauncher.android.bignerdranch.com.photogallery.PRIVATE";
 
-    public PollService() {
+     public PollService() {
         super(TAG);
     }
     @Override
@@ -75,8 +77,9 @@ public class PollService extends IntentService {
                 getSystemService(NOTIFICATION_SERVICE);
         notificationManager.notify(0, notification);
 
-            sendBroadcast(new Intent(ACTION_SHOW_NOTIFICATION));
-    }
+            sendBroadcast(new Intent(ACTION_SHOW_NOTIFICATION),PERM_PRIVATE);
+
+        }
         prefs.edit()
                 .putString(FlickrFetchr.PREF_LAST_RESULT_ID,resultId)
                 .commit();
