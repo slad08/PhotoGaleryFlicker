@@ -32,6 +32,9 @@
 
         </activity>
         <service android:name=".PollService"/>
+
+        <activity android:name=".PhotoPageActivity"/>
+
         <receiver android:name=".StartupReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>

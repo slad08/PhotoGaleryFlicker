@@ -88,14 +88,15 @@ public class PhotoGalleryFragment extends VisibleFragment {
                 GalleryItem item=mItems.get(posit);
 
                 Uri photoPageUri= Uri.parse(item.getPhotoPageUrl());
-                Intent ii=new Intent(Intent.ACTION_VIEW,photoPageUri);
+                //Intent ii=new Intent(Intent.ACTION_VIEW,photoPageUri);
+                Intent qq=new Intent(getActivity(),PhotoPageActivity.class);
+                qq.setData(photoPageUri);
 
-                startActivity(ii);
+                startActivity(qq);
             }
         });
         return v;
     }
-
     @Override
     public void onDestroy(){
         super.onDestroy();
